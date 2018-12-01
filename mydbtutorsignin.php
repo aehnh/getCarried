@@ -15,8 +15,9 @@
    
 
       if($result) {
+         
          header("location: mydbtutorlogin.php");
-      } else {
+      }else {
          $error = $error."Sign in failure";
       }
    }
