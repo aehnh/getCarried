@@ -10,7 +10,7 @@
       $myname = $_POST['name'];
       $mypassword = $_POST['password']; 
       
-      $sql = "INSERT INTO mydb.tutor (email,password,name) VALUES ('$myusername', '$mypassword','$myname')";
+      $sql = "INSERT INTO mydb.tutor (email,password,name) VALUES ('$myemail', '$mypassword','$myname')";
       $result = mysqli_query($db,$sql);
 
       if($result) {
