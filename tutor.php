@@ -1,7 +1,8 @@
 <?php
 include('config.php');
 include('session.php');
-$sql = "select * from mydb.tutor where email = '$login_session'";
+$myemail = $_SESSION['login_user'];
+$sql = "select * from mydb.tutor where email = '$myemail'";
 $result = mysqli_query($db,$sql);
 $count = mysqli_num_rows($result);
 if($count == 1) {
