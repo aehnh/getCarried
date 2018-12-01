@@ -12,6 +12,6 @@
    $login_session =  $_SESSION['username'];
    
    if(!isset($_SESSION['login_user'])){
-      header("location:config.php");
+      header("location:main.html");
    }
 ?>
