@@ -12,11 +12,10 @@
       
       $sql = "INSERT INTO mydb.tutor (email,password,name) VALUES ('$myusername', '$mypassword','$myname')";
       $result = mysqli_query($db,$sql);
-   
 
       if($result) {
          header("location: mydbtutorlogin.php");
-      } else {
+      }else {
          $error = $error."Sign in failure";
       }
    }
