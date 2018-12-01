@@ -14,6 +14,7 @@
       $result = mysqli_query($db,$sql);
 
       if($result) {
+         
          header("location: mydbtutorlogin.php");
       }else {
          $error = $error."Sign in failure";
