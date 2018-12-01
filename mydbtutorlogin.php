@@ -5,10 +5,10 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
+      $myemail = mysqli_real_escape_string($db,$_POST['email']);
       $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
       
-      $sql = "SELECT * FROM mydb.tutor WHERE email = '$myusername' and password = '$mypassword'";
+      $sql = "SELECT * FROM mydb.tutor WHERE email = '$myemail' and password = '$mypassword'";
       $result = mysqli_query($db,$sql);
       
       $count = mysqli_num_rows($result);
@@ -57,7 +57,7 @@
             <div style = "margin:30px">
                
                <form action = "" method = "post">
-                  <label>Email  :</label><input type = "text" name = "username" class = "box"/><br /><br />
+                  <label>Email  :</label><input type = "text" name = "email" class = "box"/><br /><br />
                   <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
                   <input type = "submit" value = " Submit "/><br />
                </form>
