@@ -40,19 +40,22 @@ echo "</select>
       	<textarea rows='4' cols='50' name='description'>Description</textarea>
       	<input type = 'submit' value = 'add post'>
       </form>";
-$sql = "select * from mydb.application where post_tutor_email = '$myemail'";
+$sql = "select * from mydb.application where TutorID = '$tid'";
 $result = mysqli_query($db,$sql);
-echo "<table><tr><td>tutee_email</td><td>course</td><td>status</td><td>message</td></tr>";
+
+echo "<table><tr><td>AppID</td><td>PostID</td><td>TuteeID</td><td>message</td></tr>";
 while ($data = mysqli_fetch_array($result)){
 	echo "<tr>";
-	echo " <td>".$data['tutee_email']."</td>";
-	echo "<td>".$data['post_course_name']." </td>";
-	echo " <td>".$data['status']."</td>";
-	echo " <td>".$data['message']."</td>";
-	echo " <td><form method='post' action = ''><input type='submit' value='accept' name></td>";
+	echo " <td>".$data['AppID']."</td>";
+	echo "<td>".$data['PostID']." </td>";
+	echo " <td>".$data['TuteeID']."</td>";
+	echo " <td>".$data['Message']."</td>";
+	#echo " <td><form method='post' action = ''><input type='submit' value='accept' name></td>";
 	echo "</tr>";
 }
 echo "</table>";
+
+
 ?>
 <html>
    
