@@ -40,13 +40,12 @@ function addApplication()
       if($count == 1) {
 	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	$name = $row['name'];
+  $tuteeID = $row['TuteeID'];
 	echo "name: ".$name."<br>";
 	echo "email: ".$myemail."<br>";
 }else {
     header("location: mydbtuteelogin.php");
 }
-$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-$tuteeID = $row['TuteeID'];
 $sql = "select * from mydb.application where TuteeID = '$tuteeID'";
 $result = mysqli_query($db,$sql);
 echo "My applications:<br><table><tr><td>PostID</td><td>Subject</td><td>Message</td><td>App bool</td></tr>";
