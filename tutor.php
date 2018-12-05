@@ -17,11 +17,7 @@ if($count == 1) {
     header("location: mydbtutorlogin.php");
 }
 
-$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-$tid = $row['TutorID'];
 $sql = "select * from mydb.post where TutorID = $tid";
-
-
 $result = mysqli_query($db,$sql);
 echo "<table><tr><td>course</td><td>description</td><td>status</td></tr>";
 while ($data = mysqli_fetch_array($result)){
