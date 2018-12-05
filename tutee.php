@@ -9,16 +9,16 @@ $count = mysqli_num_rows($result);
 
 ?>
 <html>
-   
+
    <head>
       <title>Welcome </title>
       <title>Welcome </title>
-      
+
    </head>
-   
+
    <body>
       <h1>Welcome <?php echo $myemail; ?></h1>
-      <?php 
+      <?php
       if($count == 1) {
 	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	$name = $row['name'];
@@ -61,13 +61,16 @@ echo "</table>";
 
 ?>
       <h2><a href = "logout.php">Sign Out</a></h2><br>
-      Search for Post:<br> 
+      Search for Post:<br>
       <select id='course'>
 	<option value='$cname'>".$cname."</option>
 </select>
-      	<input type = 'button' value = 'Send Application' >"
+
+      	<input type = 'button' value = 'Send Application'>"
+
+
       <div id = "searchresult"></div>
-      
+
    </body>
-   
-</html> 
+
+</html>

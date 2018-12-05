@@ -1,7 +1,6 @@
 <?php
 	session_start();
    
-   if(session_destroy()) {
-      header("Location: main.html");
-   }
+	session_destroy();
+	header("Location: browse.php");
 ?>
