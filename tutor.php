@@ -22,12 +22,12 @@ if($count == 1) {
 $sql = "select * from mydb.post where TutorID = $tid";
 #$sql = "select * from mydb.post";
 $result = mysqli_query($db,$sql);
-echo "<table><tr><td>course</td><td>description</td><td>status</td></tr>";
+echo "<table><tr><td>PID</td><td>Course</td><td>Description</td></tr>";
 while ($data = mysqli_fetch_array($result)){
 	echo "<tr>";
+	echo " <td>".$data['PID']."</td>";
 	echo " <td>".$data['Subject']."</td>";
 	echo "<td>".$data['Description']." </td>";
-	echo " <td>".$data['TutorID']."</td>";
 	echo "</tr>";
 }
 echo "</table>";
