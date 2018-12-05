@@ -1,16 +1,23 @@
 <?php
 	include('config.php');
 	include('session.php');
-	$course = $_GET['course'];
-	$description = $_GET['description'];
-  	$sql = "INSERT INTO `mydb`.`post`
-(`course_name`,
-`description`,
-`tutor_email`)
+	$postid = $_POST['pid'];
+	#$sql = "SELECT * from mydb.post where PID = '$postid'";
+	#$result = mysqli_query($db, $sql);
+	#$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+	#$tutor = $row['TutorID'];
+	//$tutor = mysqli_query($db, $tutorsql);
+	$msg = $_POST['Message'];
+  	$sql = "INSERT INTO `mydb`.`application`
+(`PostID`,
+`TuteeID`,
+`Message`,
+`TutorID`)
 VALUES
-('$course',
-'$description',
-'$login_session')";
+('$postid',
+10,
+'$msg',
+3)";
 $result = mysqli_query($db,$sql);
-header("Location: tutor.php");
+header("Location: tutee.php");
 ?>

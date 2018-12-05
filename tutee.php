@@ -30,11 +30,11 @@ $count = mysqli_num_rows($result);
 }
 $sql = "select * from mydb.application where TuteeID = '$tuteeID'";
 $result = mysqli_query($db,$sql);
-echo "My applications:<br><table><tr><td>PostID</td><td>Subject</td><td>Message</td></tr>";
+echo "My applications:<br><table><tr><td>APPID</td><td>PostID</td><td>Message</td></tr>";
 while ($data = mysqli_fetch_array($result,MYSQLI_ASSOC)){
 	echo "<tr>";
+  echo "<td>".$data['AppID']." </td>";
   echo "<td>".$data['PostID'].".</td>";
-	echo "<td>".$data['Subject']." </td>";
 	echo "<td>".$data['Message']." </td>";
 	echo "</tr>";
 }
@@ -49,7 +49,7 @@ while ($data = mysqli_fetch_array($result)){
 echo "</table>";
 $sql = "select * from mydb.post";
 $result = mysqli_query($db,$sql);
-echo "<table><tr><td>PID</td><td>Course</td><td>Description</td></tr>";
+echo "<table><tr><td>PID</td><td>Course</td><td>Description1</td></tr>";
 while ($data = mysqli_fetch_array($result)){
   echo "<tr>";
   echo " <td>".$data['PID']."</td>";
@@ -60,14 +60,28 @@ while ($data = mysqli_fetch_array($result)){
 echo "</table>";
 
 echo "<br>Search for Post:<br>";
-echo "<select id='post'>";
-$sql = "select * from mydb.post";
+
+#echo "<select id='post'>";
+#$sql = "select * from mydb.post";
+#$result = mysqli_query($db,$sql);
+#while ($data = mysqli_fetch_array($result)){
+#    $cname = $data['PID'];
+#  echo " <option value='$cname'>".$cname."</option>";
+#}
+#echo "</select>";
+
+echo "<form method='POST' action='addapplication.php'> <select name='pid'>";
+$sql = "select * from mydb.POST";
 $result = mysqli_query($db,$sql);
 while ($data = mysqli_fetch_array($result)){
-    $cname = $data['PID'];
-  echo " <option value='$cname'>".$cname."</option>";
+    $postid = $data['PID'];
+  echo " <option value='$postid'>".$postid."</option>";
 }
-echo "</select>";
+echo "</select>
+        <textarea rows='4' cols='50' name='Message'>Message</textarea>
+        <input type = 'submit' value = 'add application'>
+      </form>";
+
 
 ?>
 <h2><a href = "logout.php">Sign Out</a></h2>
