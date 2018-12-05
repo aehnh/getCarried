@@ -9,9 +9,9 @@
    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
    
    $login_session = $row['username'];
-   $login_session =  $_SESSION['username'];
+   $login_session = $_SESSION['username'];
    
-   if(!isset($_SESSION['login_user'])){
-      header("location:main.html");
-   }
+   // if(!isset($_SESSION['login_user'])){
+   //    header("location:main.html");
+   // }
 ?>
