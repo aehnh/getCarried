@@ -13,25 +13,6 @@ $count = mysqli_num_rows($result);
    <head>
       <title>Welcome </title>
       <title>Welcome </title>
-      <script>
-function addApplication() 
-{
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            	document.getElementById("searchresult").innerHTML = this.responseText;
-            }
-        };
-        var course = document.getElementById("course");
-        xmlhttp.open("GET","searchpost.php?course="+course.options[course.selectedIndex].text,true);
-        xmlhttp.send();
-}</script>
    </head>
    
    <body>
@@ -65,7 +46,7 @@ echo "</table>";
       <select id='course'>
 	<option value='$cname'>".$cname."</option>
 </select>
-      	<input type = 'button' value = 'Send Application' onclick='addApplication()'>"
+      	<input type = 'button' value = 'Send Application'>"
       <div id = "searchresult"></div>
       
    </body>
