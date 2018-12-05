@@ -1,21 +1,21 @@
 <?php
 include('config.php');
 include('session.php');
-$myemail = $_SESSION['login_user'];
+$myemail = $_SESSION['login_email'];
 $sql = "select * from mydb.tutor where email = '$myemail'";
 $result = mysqli_query($db,$sql);
 $count = mysqli_num_rows($result);
 if($count == 1) {
 	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	$name = $row['name'];
-	
-	$show_email =  $row['email'];
+
+	#$show_email =  $row['email'];
 	echo "name:".$name."<br>";
-	echo "email:".$show_email."<br>";
+	echo "email:".$myemail."<br>";
 }else {
     header("location: mydbtutorlogin.php");
 }
-$sql = "select * from mydb.post where tutor_email = '$login_session'";
+$sql = "select * from mydb.post where tutor_email = '$myemail'";
 $result = mysqli_query($db,$sql);
 echo "<table><tr><td>course</td><td>description</td><td>status</td></tr>";
 while ($data = mysqli_fetch_array($result)){
@@ -38,7 +38,7 @@ echo "</select>
       	<textarea rows='4' cols='50' name='description'>Description</textarea>
       	<input type = 'submit' value = 'add post'>
       </form>";
-$sql = "select * from mydb.application where post_tutor_email = '$login_session'";
+$sql = "select * from mydb.application where post_tutor_email = '$myemail'";
 $result = mysqli_query($db,$sql);
 echo "<table><tr><td>tutee_email</td><td>course</td><td>status</td><td>message</td></tr>";
 while ($data = mysqli_fetch_array($result)){
@@ -59,7 +59,7 @@ echo "</table>";
    </head>
    
    <body>
-      <h1>Welcome <?php echo $show_email; ?></h1> 
+      <h1>Welcome <?php echo $myemail; ?></h1> 
       <h2><a href = "logout.php">Sign Out</a></h2>
    </body>
    

@@ -17,7 +17,7 @@
 		
       if($count == 1) {
 
-         $_SESSION['login_user'] = $myemail;
+         $_SESSION['login_email'] = $myemail;
          header("location: tutor.php");
       }else {
          $error = "Your Login Name or Password is invalid";
