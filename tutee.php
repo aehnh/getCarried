@@ -48,13 +48,12 @@ function addApplication()
 }
 $sql = "select * from mydb.application where TuteeID = '$tuteeID'";
 $result = mysqli_query($db,$sql);
-echo "My applications:<br><table><tr><td>PostID</td><td>Subject</td><td>Message</td><td>App bool</td></tr>";
+echo "My applications:<br><table><tr><td>PostID</td><td>Subject</td><td>Message</td></tr>";
 while ($data = mysqli_fetch_array($result,MYSQLI_ASSOC)){
 	echo "<tr>";
   echo "<td>".$data['PostID'].".</td>";
 	echo "<td>".$data['Subject']." </td>";
 	echo "<td>".$data['Message']." </td>";
-	echo " <td>".$data['App bool']."</td>";
 	echo "</tr>";
 }
 echo "</table>";
