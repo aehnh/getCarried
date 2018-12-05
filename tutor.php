@@ -8,6 +8,7 @@ $count = mysqli_num_rows($result);
 if($count == 1) {
 	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	$name = $row['name'];
+	$login_session = $row['email'];
 	echo "name:".$name."<br>";
 	echo "email:".$login_session."<br>";
 }else {
