@@ -8,9 +8,10 @@ $count = mysqli_num_rows($result);
 if($count == 1) {
 	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	$name = $row['name'];
-	#$login_session = $row['email'];
+	
+	$show_email =  $row['email'];
 	echo "name:".$name."<br>";
-	echo "email:".$login_session."<br>";
+	echo "email:".$show_email."<br>";
 }else {
     header("location: mydbtutorlogin.php");
 }
@@ -58,7 +59,7 @@ echo "</table>";
    </head>
    
    <body>
-      <h1>Welcome <?php echo $login_session; ?></h1> 
+      <h1>Welcome <?php echo $show_email; ?></h1> 
       <h2><a href = "logout.php">Sign Out</a></h2>
    </body>
    
