@@ -59,12 +59,19 @@ while ($data = mysqli_fetch_array($result)){
 }
 echo "</table>";
 
+echo "<br>Search for Post:<br>";
+echo "<select id='post'>";
+$sql = "select * from mydb.post";
+$result = mysqli_query($db,$sql);
+while ($data = mysqli_fetch_array($result)){
+    $cname = $data['PID'];
+  echo " <option value='$cname'>".$cname."</option>";
+}
+echo "</select>";
+
 ?>
-      <h2><a href = "logout.php">Sign Out</a></h2><br>
-      Search for Post:<br>
-      <select id='course'>
-	<option value='$cname'>".$cname."</option>
-</select>
+<h2><a href = "logout.php">Sign Out</a></h2>
+      
 
       	<input type = 'button' value = 'Send Application'>"
 
