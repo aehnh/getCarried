@@ -3,7 +3,7 @@
 	include('session.php');
 	$course = $_POST['course'];
 	$description = $_POST['description'];
-	$show = $_POST['$myemail']
+	$myemail = $_SESSION['login_email'];
   	$sql = "INSERT INTO `mydb`.`post`
 (`course_name`,
 `description`,
@@ -11,7 +11,7 @@
 VALUES
 ('$course',
 '$description',
-'$show')";
+'$myemail')";
 $result = mysqli_query($db,$sql);
 header("Location: tutor.php");
 ?>
