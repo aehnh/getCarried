@@ -8,21 +8,25 @@ $count = mysqli_num_rows($result);
 if($count == 1) {
 	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	$name = $row['name'];
-
+	#$tid = $row['TutorID'];
 	#$show_email =  $row['email'];
 	echo "name:".$name."<br>";
 	echo "email:".$myemail."<br>";
 }else {
     header("location: mydbtutorlogin.php");
 }
-$sql = "select * from mydb.post where tutor_email = '$myemail'";
+$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+$tid = $row['TutorID'];
+#$tid = 3;
+#$sql = "select * from mydb.post where TutorID = '$tid'";
+$sql = "select * from mydb.post";
 $result = mysqli_query($db,$sql);
 echo "<table><tr><td>course</td><td>description</td><td>status</td></tr>";
 while ($data = mysqli_fetch_array($result)){
 	echo "<tr>";
-	echo " <td>".$data['course_name']."</td>";
-	echo "<td>".$data['description']." </td>";
-	echo " <td>".$data['status']."</td>";
+	echo " <td>".$data['Subject']."</td>";
+	echo "<td>".$data['Description']." </td>";
+	echo " <td>".$data['TutorID']."</td>";
 	echo "</tr>";
 }
 echo "</table>";
