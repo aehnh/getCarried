@@ -17,7 +17,7 @@
 		
       if($count == 1) {
 
-         $_SESSION['login_user'] = $myemail;
+         $_SESSION['login_email'] = $myemail;
          header("location: tutor.php");
       }else {
          $error = "Your Login Name or Password is invalid";
@@ -59,7 +59,7 @@
                   <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
                   <input type = "submit" value = " Submit "/><br />
                </form>
-               <a href="mydbtutorsignin.php">Sign in</a>
+               <a href="mydbtutorsignin.php">Sign Up</a>
                <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
                
             </div>

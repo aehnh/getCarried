@@ -6,11 +6,11 @@
    }
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
+      $myemail = $_POST['email'];
       $myname = $_POST['name'];
-      $myusername = $_POST['username'];
       $mypassword = $_POST['password']; 
       
-      $sql = "INSERT INTO mydb.tutee (email,password,name) VALUES ('$myusername', '$mypassword','myname')";
+      $sql = "INSERT INTO mydb.tutee (email,password,name) VALUES ('$myemail', '$mypassword','$myname')";
       $result = mysqli_query($db,$sql);
    
 
@@ -25,7 +25,7 @@
 <html>
    
    <head>
-      <title>Tutee Signin Page</title>
+      <title>Tutee Signup Page</title>
       
       <style type = "text/css">
          body {
@@ -54,8 +54,8 @@
                
                <form action = "" method = "post">
 
-                  <label>Email  :</label><input type = "text" name = "name" class = "box" /><br/><br />
-                  <label>Name  :</label><input type = "text" name = "username" class = "box"/><br /><br />
+                  <label>Email  :</label><input type = "text" name = "email" class = "box" /><br/><br />
+                  <label>Name  :</label><input type = "text" name = "name" class = "box"/><br /><br />
                   <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
                   <input type = "submit" value = " Submit "/><br />
                </form>
