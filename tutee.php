@@ -1,7 +1,7 @@
 <?php
 include('config.php');
 include('session.php');
-$myemail = $_SESSION['login_user'];
+$myemail = $_SESSION['login_email'];
 $sql = "select * from mydb.tutee where email = '$myemail'";
 $result = mysqli_query($db,$sql);
 $count = mysqli_num_rows($result);
@@ -35,25 +35,27 @@ function addApplication()
    </head>
    
    <body>
-      <h1>Welcome <?php echo $login_session; ?></h1> 
+      <h1>Welcome <?php echo $myemail; ?></h1>
       <?php 
       if($count == 1) {
 	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	$name = $row['name'];
-	echo "name:".$name."<br>";
-	echo "email:".$login_session."<br>";
+	echo "name: ".$name."<br>";
+	echo "email: ".$myemail."<br>";
 }else {
     header("location: mydbtuteelogin.php");
 }
-$sql = "select * from mydb.application where tutee_email = '$login_session'";
+$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+$tuteeID = $row['TuteeID'];
+$sql = "select * from mydb.application where TuteeID = '$tuteeID'";
 $result = mysqli_query($db,$sql);
-echo "My applications:<br><table><tr><td>course</td><td>description</td><td>status</td></tr>";
-while ($data = mysqli_fetch_array($result)){
+echo "My applications:<br><table><tr><td>PostID</td><td>Subject</td><td>Message</td><td>App bool</td></tr>";
+while ($data = mysqli_fetch_array($result,MYSQLI_ASSOC)){
 	echo "<tr>";
-	echo "<td>".$data['message']." </td>";
-	echo "<td>".$data['post_course_name']." </td>";
-	echo "<td>".$data['post_tutor_name'].".</td>";
-	echo " <td>".$data['status']."</td>";
+  echo "<td>".$data['PostID'].".</td>";
+	echo "<td>".$data['Subject']." </td>";
+	echo "<td>".$data['Message']." </td>";
+	echo " <td>".$data['App bool']."</td>";
 	echo "</tr>";
 }
 echo "</table>";
@@ -61,11 +63,11 @@ echo "</table>";
 
 ?>
       <h2><a href = "logout.php">Sign Out</a></h2><br>
-      Search for tutor:<br> 
+      Search for Post:<br> 
       <select id='course'>
 	<option value='$cname'>".$cname."</option>
 </select>
-      	<input type = 'button' value = 'add post' onclick='addApplication()'>"
+      	<input type = 'button' value = 'Send Application' onclick='addApplication()'>"
       <div id = "searchresult"></div>
       
    </body>
