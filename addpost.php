@@ -3,6 +3,7 @@
 	include('session.php');
 	$course = $_POST['course'];
 	$description = $_POST['description'];
+	$login_session = $_POST['$myemail'];
   	$sql = "INSERT INTO `mydb`.`post`
 (`course_name`,
 `description`,
