@@ -24,7 +24,7 @@
 <html>
    
    <head>
-      <title>Tutor Signin Page</title>
+      <title>Tutor Signup Page</title>
       
       <style type = "text/css">
          body {

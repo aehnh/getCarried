@@ -42,7 +42,7 @@ function addApplication()
 	echo "name:".$name."<br>";
 	echo "email:".$login_session."<br>";
 }else {
-    header("location: mydbtutorlogin.php");
+    header("location: mydbtuteelogin.php");
 }
 $sql = "select * from mydb.application where tutee_email = '$login_session'";
 $result = mysqli_query($db,$sql);
@@ -60,16 +60,11 @@ echo "</table>";
 
 ?>
       <h2><a href = "logout.php">Sign Out</a></h2><br>
-      Search for tutor:<br><?php 
-      echo "<select id='course'>";
-$sql = "select * from mydb.course";
-$result = mysqli_query($db,$sql);
-while ($data = mysqli_fetch_array($result)){
-   	$cname = $data['name'];
-	echo " <option value='$cname'>".$cname."</option>";
-}
-echo "</select>
-      	<input type = 'button' value = 'add post' onclick='addApplication()'>";?>
+      Search for tutor:<br> 
+      <select id='course'>
+	<option value='$cname'>".$cname."</option>
+</select>
+      	<input type = 'button' value = 'add post' onclick='addApplication()'>"
       <div id = "searchresult"></div>
       
    </body>
