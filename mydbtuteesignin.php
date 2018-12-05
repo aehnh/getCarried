@@ -10,7 +10,7 @@
       $myname = $_POST['name'];
       $mypassword = $_POST['password']; 
       
-      $sql = "INSERT INTO mydb.tutee (email,password,name) VALUES ('$myemail', '$mypassword','myname')";
+      $sql = "INSERT INTO mydb.tutee (email,password,name) VALUES ('$myemail', '$mypassword','$myname')";
       $result = mysqli_query($db,$sql);
    
 
@@ -54,8 +54,8 @@
                
                <form action = "" method = "post">
 
-                  <label>Email  :</label><input type = "text" name = "name" class = "box" /><br/><br />
-                  <label>Name  :</label><input type = "text" name = "username" class = "box"/><br /><br />
+                  <label>Email  :</label><input type = "text" name = "email" class = "box" /><br/><br />
+                  <label>Name  :</label><input type = "text" name = "name" class = "box"/><br /><br />
                   <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
                   <input type = "submit" value = " Submit "/><br />
                </form>
