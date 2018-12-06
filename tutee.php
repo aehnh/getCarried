@@ -47,14 +47,15 @@ while ($data = mysqli_fetch_array($result)){
 }
 
 echo "</table>";
-$sql = "select * from mydb.post";
+$sql = "select * from mydb.post left join mydb.tutor on tutor.TutorID = post.TutorID";
 $result = mysqli_query($db,$sql);
-echo "<table><tr><td>PID</td><td>Course</td><td>Description1</td></tr>";
+echo "<table><tr><td>PID</td><td>Course</td><td>Description1</td><td>Tutor</td></tr>";
 while ($data = mysqli_fetch_array($result)){
   echo "<tr>";
   echo " <td>".$data['PID']."</td>";
   echo " <td>".$data['Subject']."</td>";
   echo "<td>".$data['Description']." </td>";
+  echo "<td>".$data['name']." </td>";
   echo "</tr>";
 }
 echo "</table>";

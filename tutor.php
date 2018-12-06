@@ -17,6 +17,14 @@ if($count == 1) {
     header("location: mydbtutorlogin.php");
 }
 
+$sql = "select count(*) from mydb.post where TutorID = '$tid'";
+$result = mysqli_query($db, $sql);
+$row = mysqli_fetch_array($result);
+echo "<tr>";
+echo "Number of posts:".$row[0]."<br>";
+echo "</tr>";
+
+
 $sql = "select * from mydb.post where TutorID = $tid";
 $result = mysqli_query($db,$sql);
 echo "<table><tr><td>PID</td><td>Course</td><td>Description</td></tr>";
@@ -37,9 +45,33 @@ while ($data = mysqli_fetch_array($result)){
 	echo " <option value='$cname'>".$cname."</option>";
 }
 echo "</select>
-      	<textarea rows='4' cols='50' name='description'>Description</textarea>
+      	<textarea rows='4' cols='50' name='description'>Description2</textarea>
       	<input type = 'submit' value = 'add post'>
       </form>";
+
+echo "<form method='POST' action='editpost.php'> <select name='postid'>";
+$sql = "select * from mydb.post where TutorID = $tid";
+$result = mysqli_query($db,$sql);
+while ($data = mysqli_fetch_array($result)){
+   	$cname = $data['PID'];
+	echo " <option value='$cname'>".$cname."</option>";
+}
+echo "</select>
+      	<textarea rows='4' cols='50' name='description'>Description</textarea>
+      	<input type = 'submit' value = 'edit post'>
+      </form>";
+
+echo "<form method='POST' action='deletepost.php'> <select name='postid'>";
+$sql = "select * from mydb.post where TutorID = $tid";
+$result = mysqli_query($db,$sql);
+while ($data = mysqli_fetch_array($result)){
+   	$cname = $data['PID'];
+	echo " <option value='$cname'>".$cname."</option>";
+}
+echo "</select>
+      	<input type = 'submit' value = 'delete post'>
+      </form>";
+
 $sql = "select * from mydb.application where TutorID = '$tid'";
 $result = mysqli_query($db,$sql);
 
