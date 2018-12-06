@@ -39,12 +39,7 @@ while ($data = mysqli_fetch_array($result,MYSQLI_ASSOC)){
 	echo "</tr>";
 }
 
-$sql = "select * from mydb.post";
-$result = mysqli_query($db,$sql);
-while ($data = mysqli_fetch_array($result)){
-    $cname = $data['PID'];
-  echo " <option value='$cname'>".$cname."</option>";
-}
+
 
 echo "</table>";
 $sql = "select * from mydb.post left join mydb.tutor on tutor.TutorID = post.TutorID";

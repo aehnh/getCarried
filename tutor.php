@@ -72,8 +72,9 @@ echo "</select>
       	<input type = 'submit' value = 'delete post'>
       </form>";
 
-$sql = "select * from mydb.applications where PostID = (select * from mydb.post where TutorID = '$tid')";
+$sql = "select * from mydb.application where PostID in (select PID from mydb.post where post.TutorID = '$tid')";
 $result = mysqli_query($db,$sql);
+echo mysqli_error($db);
 
 echo "<table><tr><td>AppID</td><td>PostID</td><td>TuteeID</td><td>message</td></tr>";
 while ($data = mysqli_fetch_array($result)){
