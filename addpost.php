@@ -19,5 +19,5 @@ VALUES
 '$course',
 '$description')";
 $result = mysqli_query($db,$sql);
-header("Location: tutor.php");
+header("Location: manage.php");
 ?>

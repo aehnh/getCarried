@@ -10,5 +10,5 @@
   	$sql = "DELETE FROM `mydb`.`post`
 WHERE PID = '$course'";
 $result = mysqli_query($db,$sql);
-header("Location: tutor.php");
+header("Location: manage.php");
 ?>

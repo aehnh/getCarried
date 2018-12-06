@@ -25,5 +25,5 @@ VALUES
 '$msg',
 '$tutor')";
 $result = mysqli_query($db,$sql);
-header("Location: tutee.php");
+header("Location: browse.php");
 ?>
