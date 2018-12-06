@@ -10,6 +10,8 @@
       $myname = $_POST['name'];
       $mypassword = $_POST['password']; 
       
+      $sql = "CREATE TRIGGER MysqlTrigger BEFORE INSERT ON mydb.tutor FOR EACH ROW SET NEW.name=UPPER(NEW.name);";
+      mysqli_query($db,$sql);
       $sql = "INSERT INTO mydb.tutor (email,password,name) VALUES ('$myemail', '$mypassword','$myname')";
       $result = mysqli_query($db,$sql);
 
