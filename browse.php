@@ -123,15 +123,7 @@
 
 	<div style="margin-top: 70px; overflow: auto; height: calc(100vh - 70px); line-height: 0px;">
 		<p>ffs FUCK</p>
-		<!-- <?php
-			echo isset($_SESSION['login_status']) ? "truee" : "falsee";
-			echo $count;
-			if(isset($_SESSION["login_status"])) {
-				echo $_SESSION["login_status"];
-				unset($_SESSION["login_status"]);
-				$elogin = "Invalid login";
-			}
-		?> -->
+		
 	</div>
 
 	<div id="id01" class="modal">

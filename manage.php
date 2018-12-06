@@ -3,6 +3,7 @@
 	include('session.php');
 
 	$myemail = $_SESSION['login_email'];
+	$mytype = $_SESSION['login_type'];
 	$sql = "select * from mydb.tutor where email = '$myemail'";
 	$result = mysqli_query($db,$sql);
 	$count = mysqli_num_rows($result);
