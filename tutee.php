@@ -83,7 +83,7 @@ echo "</select>
 <h2><a href = "logout.php">Sign Out</a></h2>
       
 
-      	<input type = 'button' value = 'Send Application'>"
+      	
 
 
       <div id = "searchresult"></div>
