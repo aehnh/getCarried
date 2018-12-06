@@ -72,7 +72,7 @@ echo "</select>
       	<input type = 'submit' value = 'delete post'>
       </form>";
 
-$sql = "select * from mydb.application where TutorID = '$tid'";
+$sql = "select * from mydb.applications where PostID = (select * from mydb.post where TutorID = '$tid')";
 $result = mysqli_query($db,$sql);
 
 echo "<table><tr><td>AppID</td><td>PostID</td><td>TuteeID</td><td>message</td></tr>";
