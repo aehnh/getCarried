@@ -7,7 +7,7 @@
    $ses_sql = mysqli_query($db,"select email from admin where email = '$user_check' ");
    
    $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
-   
+   $Tutorid = $row['TutorID'];
    $login_email = $row['email'];
    $login_email =  $_SESSION['email'];
    

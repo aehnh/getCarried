@@ -1,7 +1,7 @@
 <?php
 	include('config.php');
 	include('session.php');
-	$course = $_POST['course'];
+	$course = $_POST['postid'];
 	$description = $_POST['description'];
 
 	$myemail = $_SESSION['login_email'];
@@ -10,14 +10,9 @@
 	$row0 = mysqli_fetch_array($mytutor,MYSQLI_ASSOC);
 	$tutorID = $row0['TutorID'];
 
-  	$sql = "INSERT INTO `mydb`.`post`
-(`TutorID`,
-`Subject`,
-`Description`)
-VALUES
-('$tutorID',
-'$course',
-'$description')";
+  	$sql = "UPDATE `mydb`.`post`
+SET Description = '$description'
+WHERE PID = '$course'";
 $result = mysqli_query($db,$sql);
 header("Location: tutor.php");
 ?>
