@@ -11,7 +11,7 @@
    $login_email = $row['email'];
    $login_email =  $_SESSION['email'];
    
-   if(!isset($_SESSION['login_email'])){
-      header("location:main.html");
-   }
+   // if(!isset($_SESSION['login_email'])){
+   //    header("location:main.html");
+   // }
 ?>

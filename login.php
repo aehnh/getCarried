@@ -17,9 +17,17 @@
 		
       if($count == 1) {
          $_SESSION['login_user'] = $myemail;
-         header("location: browse.php");
-      }else {
-         $error = "Your Login Name or Password is invalid";
+         $_SESSION['login_status'] = 1;
+      } else {
+         $_SESSION['login_status'] = -1;
       }
    }
 ?>
+<html>
+<head>
+   <title></title>
+</head>
+<body>
+<p>bitchass</p>
+</body>
+</html>
