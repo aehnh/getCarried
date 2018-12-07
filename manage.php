@@ -75,7 +75,7 @@
 			}
 			echo "</table>";
 
-			echo "<div class='modal2'>
+			echo "<div class='modal2' style='margin-bottom: 50px;'>
 				<div class='modal2-content'>";
 			echo "<ul class='modal2-tab'>
 				<li class='active' onclick='changeTab(this, 0);' id='tadd'><p>Add</p></li>
