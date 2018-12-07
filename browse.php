@@ -97,6 +97,7 @@
 	<link rel="stylesheet" type="text/css" href="style/nav.css">
 	<link rel="stylesheet" type="text/css" href="style/modal.css">
 	<link rel="stylesheet" type="text/css" href="style/convention.css">
+	<link rel="stylesheet" type="text/css" href="style/table.css">
 </head>
 <body>
 	<ul class="nav">
@@ -144,12 +145,12 @@
 		}
 	</script>
 
-	<div style="margin-top: 70px; overflow: auto; height: calc(100vh - 70px); line-height: 0px;">
-		<p>ffs23baweabitchwbeaw3</p>
+	<div style="margin-top: 70px; overflow: auto; height: calc(100vh - 70px);">
+		<div style="margin-top: 30px; line-height: 0px; width: 50%; margin-left: auto; margin-right: auto;">
 		<?php 
 			$sql = "select * from mydb.post left join mydb.tutor on tutor.TutorID = post.TutorID";
 			$result = mysqli_query($db,$sql);
-			echo "<table><tr><td>PID</td><td>Course</td><td>Description</td><td>Tutor</td></tr>";
+			echo "<table id='posts'><tr><th>PID</th><th>Course</th><th>Description</th><th>Tutor</th></tr>";
 			while ($data = mysqli_fetch_array($result)){
 				echo "<tr>";
 				echo " <td>".$data['PID']."</td>";
@@ -159,9 +160,14 @@
 				echo "</tr>";
 			}
 			echo "</table>";
-			echo $_SESSION['login_type'];
+			echo "<br/>";
+			echo "<br/>";
+			echo "<br/>";
+			
 			if(isset($_SESSION['login_type']) && $_SESSION['login_type'] == "2") {
+				echo "<div class='container' style='width: 600px; margin: 50px auto auto auto; background-color: #333;'>";
 				echo "<form method='POST' action='addapplication.php'> <select name='pid'>";
+				echo"<option value='$postid'>Select PID</option>";
 				$sql = "select * from mydb.POST";
 				$result = mysqli_query($db,$sql);
 				while ($data = mysqli_fetch_array($result)){
@@ -169,9 +175,20 @@
 					echo " <option value='$postid'>".$postid."</option>";
 				}
 				echo "</select>
-				<textarea rows='4' cols='50' name='Message'>Message</textarea>
-				<input type = 'submit' value = 'add application'>
+				<textarea name='Message' style='width: 100%;
+					padding: 12px 20px;
+					margin: 8px 0;
+					display: inline-block;
+					border: 1px solid #ccc;
+					box-sizing: border-box;
+					font-size: 16px;
+					font-family: Lato;
+					resize: none;
+					height: 150px;'
+					placeholder='Write a message'></textarea>
+				<button type = 'submit' value = 'add application'>APPLY</button>
 				</form>";
+				echo "</div>";
 			}
 		?>
 	</div>

@@ -44,3 +44,36 @@
 .modal-tab li:hover:not(.active) {
 	background-color: #111;
 }
+
+.modal2-content {
+	background-color: #fefefe;
+	margin: 50px auto auto auto;
+	width: 600px;
+}
+.modal2-tab {
+	display: inline-block;
+	list-style: none;
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+	font-size: 18px;
+}
+.modal2-tab li {
+	cursor: pointer;
+	display: inline-block;
+	float: left;
+	width: 200px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #f2f2f2;
+	color: #333;
+}
+.modal2-tab li.active {
+	cursor: default;
+	background-color: #333;
+	color: white;
+}
+.modal2-tab li:hover:not(.active) {
+	background-color: #ddd;
+	color: #990000;
+}

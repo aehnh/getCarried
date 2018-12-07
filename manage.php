@@ -26,6 +26,7 @@
 	<link rel="stylesheet" type="text/css" href="style/nav.css">
 	<link rel="stylesheet" type="text/css" href="style/modal.css">
 	<link rel="stylesheet" type="text/css" href="style/convention.css">
+	<link rel="stylesheet" type="text/css" href="style/table.css">
 </head>
 <body>
 	<ul class="nav">
@@ -36,20 +37,20 @@
 		<li><a href="browse.php" class="hov" id="navbrowse">BROWSE</a></li>
 	</ul>
 
-	<div style="margin-top: 70px; overflow: auto; height: calc(100vh - 70px); line-height: 0px;">
-		<p>ffs FUbitchCK</p>
+	<div style="margin-top: 70px; overflow: auto; height: calc(100vh - 70px);">
+		<div style="margin-top: 30px; line-height: 0px; width: 50%; margin-left: auto; margin-right: auto;">
 		<?php 
 			$sql = "select count(*) from mydb.post where TutorID = '$tid'";
 			$result = mysqli_query($db, $sql);
 			$row = mysqli_fetch_array($result);
-			echo "<tr>";
-			echo "Number of posts:".$row[0]."<br>";
-			echo "</tr>";
+			echo "<p>";
+			echo "Number of posts: ".$row[0];
+			echo "</p>";
 
 
 			$sql = "select * from mydb.post where TutorID = $tid";
 			$result = mysqli_query($db,$sql);
-			echo "<table><tr><td>PID</td><td>Course</td><td>Description</td></tr>";
+			echo "<table id='posts'><tr><th>PID</th><th>Course</th><th>Description</th></tr>";
 			while ($data = mysqli_fetch_array($result)) {
 				echo "<tr>";
 				echo " <td>".$data['PID']."</td>";
@@ -59,46 +60,10 @@
 			}
 			echo "</table>";
 
-			echo "<form method='POST' action='addpost.php'> <select name='course'>";
-			$sql = "select * from mydb.course";
-			$result = mysqli_query($db,$sql);
-			while ($data = mysqli_fetch_array($result)) {
-				$cname = $data['name'];
-				echo " <option value='$cname'>".$cname."</option>";
-			}
-			echo "</select>
-			<textarea rows='4' cols='50' name='description'>Description2</textarea>
-			<input type = 'submit' value = 'add post'>
-			</form>";
-
-			echo "<form method='POST' action='editpost.php'> <select name='postid'>";
-			$sql = "select * from mydb.post where TutorID = $tid";
-			$result = mysqli_query($db,$sql);
-			while ($data = mysqli_fetch_array($result)){
-			$cname = $data['PID'];
-			echo " <option value='$cname'>".$cname."</option>";
-			}
-			echo "</select>
-			<textarea rows='4' cols='50' name='description'>Description</textarea>
-			<input type = 'submit' value = 'edit post'>
-			</form>";
-
-			echo "<form method='POST' action='deletepost.php'> <select name='postid'>";
-			$sql = "select * from mydb.post where TutorID = $tid";
-			$result = mysqli_query($db,$sql);
-			while ($data = mysqli_fetch_array($result)){
-			$cname = $data['PID'];
-			echo " <option value='$cname'>".$cname."</option>";
-			}
-			echo "</select>
-			<input type = 'submit' value = 'delete post'>
-			</form>";
-
 			$sql = "select * from mydb.application where PostID in (select PID from mydb.post where post.TutorID = '$tid')";
 			$result = mysqli_query($db,$sql);
 			echo mysqli_error($db);
-
-			echo "<table><tr><td>AppID</td><td>PostID</td><td>TuteeID</td><td>message</td></tr>";
+			echo "<table id='posts' style='margin-top: 50px;'><tr><th>AppID</th><th>PostID</th><th>TuteeID</th><th>Message</th></tr>";
 			while ($data = mysqli_fetch_array($result)){
 			echo "<tr>";
 			echo " <td>".$data['AppID']."</td>";
@@ -110,10 +75,105 @@
 			}
 			echo "</table>";
 
+			echo "<div class='modal2'>
+				<div class='modal2-content'>";
+			echo "<ul class='modal2-tab'>
+				<li class='active' onclick='changeTab(this, 0);' id='tadd'><p>Add</p></li>
+				<li onclick='changeTab(this, 1);' id='tedit'><p>Edit</p></li>
+				<li onclick='changeTab(this, 2);' id='tdelete'><p>Delete</p></li>
+			</ul>";
+			echo "<div class='container' id='cadd' style='background-color: #333; display: block;'>";
+			echo "<form method='POST' action='addpost.php'> <select name='course'>";
+			$sql = "select * from mydb.course";
+			echo"<option value='$postid'>Select Course</option>";
+			$result = mysqli_query($db,$sql);
+			while ($data = mysqli_fetch_array($result)) {
+				$cname = $data['name'];
+				echo " <option value='$cname'>".$cname."</option>";
+			}
+			echo "</select>
+			<textarea name='description' style='width: 100%;
+					padding: 12px 20px;
+					margin: 8px 0;
+					display: inline-block;
+					border: 1px solid #ccc;
+					box-sizing: border-box;
+					font-size: 16px;
+					font-family: Lato;
+					resize: none;
+					height: 150px;' placeholder='Write a description'></textarea>
+			<button type = 'submit' value = 'add post'>ADD POST</button>
+			</form>";
+			echo "</div>";
+
+			echo "<div class='container' id='cedit' style='background-color: #333; display: none;'>";
+			echo "<form method='POST' action='editpost.php'> <select name='postid'>";
+			$sql = "select * from mydb.post where TutorID = $tid";
+			echo "<option value='$postid'>Select PID</option>";
+			$result = mysqli_query($db,$sql);
+			while ($data = mysqli_fetch_array($result)){
+			$cname = $data['PID'];
+			echo " <option value='$cname'>".$cname."</option>";
+			}
+			echo "</select>
+			<textarea name='description' style='width: 100%;
+					padding: 12px 20px;
+					margin: 8px 0;
+					display: inline-block;
+					border: 1px solid #ccc;
+					box-sizing: border-box;
+					font-size: 16px;
+					font-family: Lato;
+					resize: none;
+					height: 150px;' placeholder='Write a description'></textarea>
+			<button type = 'submit' value = 'edit post'>EDIT POST</button>
+			</form>";
+			echo "</div>";
+
+			echo "<div class='container' id='cdelete' style='background-color: #333; display: none;'>";
+			echo "<form method='POST' action='deletepost.php'> <select name='postid'>";
+			$sql = "select * from mydb.post where TutorID = $tid";
+			echo"<option value='$postid'>Select PID</option>";
+			$result = mysqli_query($db,$sql);
+			while ($data = mysqli_fetch_array($result)){
+			$cname = $data['PID'];
+			echo " <option value='$cname'>".$cname."</option>";
+			}
+			echo "</select>
+			<button type = 'submit' value = 'delete post'>DELETE POST</button>
+			</form>";
+			echo "</div>";
+			echo "</div></div>";
 
 		?>
+		</div>
 	</div>
 
-	<script type="text/javascript"></script>
+	<script type="text/javascript">
+		function changeTab(self, index) {
+			if(!self.classList.contains("active")) {
+				self.classList.add("active");
+				if(index == 0) {
+					document.getElementById("tedit").classList.remove("active");
+					document.getElementById("tdelete").classList.remove("active");
+					document.getElementById("cadd").style.display = "block";
+					document.getElementById("cedit").style.display = "none";
+					document.getElementById("cdelete").style.display = "none";
+				} else if(index == 1) {
+					document.getElementById("tadd").classList.remove("active");
+					document.getElementById("tdelete").classList.remove("active");
+					document.getElementById("cedit").style.display = "block";
+					document.getElementById("cadd").style.display = "none";
+					document.getElementById("cdelete").style.display = "none";
+				} else {
+					document.getElementById("tadd").classList.remove("active");
+					document.getElementById("tedit").classList.remove("active");
+					document.getElementById("cdelete").style.display = "block";
+					document.getElementById("cadd").style.display = "none";
+					document.getElementById("cedit").style.display = "none";
+				}
+			}
+		}
+	</script>
 </body>
 </html>
