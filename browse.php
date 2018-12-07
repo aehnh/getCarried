@@ -2,6 +2,23 @@
 	include('config.php');
 	include('session.php');
 
+	$myemail = $_SESSION['login_email'];
+	$mytype = $_SESSION['login_type'];
+	if($mytype == "1") {
+		$sql = "select * from mydb.tutor where email = '$myemail'";
+		$result = mysqli_query($db,$sql);
+		$count = mysqli_num_rows($result);
+	} else if($mytype == "2") {
+		$sql = "select * from mydb.tutee where email = '$myemail'";
+		$result = mysqli_query($db,$sql);
+		$count = mysqli_num_rows($result);
+	} else {
+		$count = 0;
+	}
+	if($count != 1) {
+		$_SESSION['login_type'] = 0;
+	}
+
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
 		if($_POST['submit'] == "login") {
 			$myemail = mysqli_real_escape_string($db,$_POST['email']);
@@ -44,6 +61,8 @@
 				$emess = "Passwords do not match";
 			} else {
 				if($mytype == "1") {
+					$sql = "CREATE TRIGGER MysqlTrigger BEFORE INSERT ON mydb.tutor FOR EACH ROW SET NEW.name=UPPER(NEW.name);";
+					mysqli_query($db,$sql);
 					$sql = "INSERT INTO mydb.tutor (email, password, name) VALUES ('$myemail', '$mypassword', '$myname')";
 
 					$result = mysqli_query($db,$sql);
@@ -59,6 +78,8 @@
 						$emess = "Invalid registration";
 					}
 				} else if($mytype == "2") {
+					$sql = "CREATE TRIGGER MysqlTrigger1 BEFORE INSERT ON mydb.tutee FOR EACH ROW SET NEW.name=UPPER(NEW.name)";
+					mysqli_query($db,$sql);
 					$sql = "INSERT INTO mydb.tutee (email, password, name) VALUES ('$myemail', '$mypassword', '$myname')";
 
 					$result = mysqli_query($db,$sql);
@@ -79,16 +100,16 @@
 			}
 		}
 	}
-	if($count != 1) {
-		$myemail = $_SESSION['login_email'];
-		$mytype = $_SESSION['login_type'];
-		$sql = "select * from mydb.tutor where email = '$myemail'";
-		$result = mysqli_query($db,$sql);
-		$count = mysqli_num_rows($result);
-		if($count != 1) {
-			$_SESSION['login_type'] = 0;
-		}
-	}
+	// if($count != 1) {
+	// 	$myemail = $_SESSION['login_email'];
+	// 	$mytype = $_SESSION['login_type'];
+	// 	$sql = "select * from mydb.tutor where email = '$myemail'";
+	// 	$result = mysqli_query($db,$sql);
+	// 	$count = mysqli_num_rows($result);
+	// 	if($count != 1) {
+	// 		$_SESSION['login_type'] = 0;
+	// 	}
+	// }
 ?>
 <html>
 <head>
